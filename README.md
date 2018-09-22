@@ -1,6 +1,6 @@
 # webpack-babel-minimal-boilerplate
 
-Minimal boilerplate with webpack and babel
+Minimal react app boilerplate with webpack and babel
 
 ## To start the app:
 
