@@ -35,5 +35,3 @@ TableTile.propTypes = {
 };
 
 export default TableTile;
-
-// TODO: comment about selectors

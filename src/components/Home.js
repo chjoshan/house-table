@@ -22,8 +22,3 @@ class Home extends Component {
 }
 
 export default Home;
-
-// TODO: implement async loading of data
-// TODO: comment about global state and state management, normalization
-// TODO: comment about the usage of style
-// TODO: comment about the usage Fragments and Context

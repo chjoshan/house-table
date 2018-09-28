@@ -1,8 +1,8 @@
 {
   "name": "app",
   "version": "1.0.0",
-  "description": "webpack babel minimal boilerplate",
-  "main": "/src/index.js",
+  "description": "House Listing",
+  "main": "index.js",
   "scripts": {
     "dev": "webpack --mode=development",
     "build": "webpack --mode=production",
