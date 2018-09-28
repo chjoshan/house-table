@@ -1,0 +1,41 @@
+@import "config";
+
+.tableWrapper {
+  position: relative;
+  text-align: left;
+  overflow-x: auto;
+  border: 1px solid $lightGrey;
+  padding-bottom: 10px;
+}
+.tableScroll {
+  max-height: 450px;
+  overflow: auto;
+}
+
+.tableWrapper table {
+  width: 100%;
+  white-space: nowrap;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background: $whiteSmoke;
+}
+
+td, th {
+  width: 20%;
+  padding: 5px 10px 5px 10px;
+}
+
+tbody tr {
+  &:hover {
+    background: $lightTeal;
+  }
+}
+
+.houseImg {
+  height: 100px;
+}

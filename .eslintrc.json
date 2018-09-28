@@ -9,7 +9,7 @@
         "indent": [2, 4, { "SwitchCase": 1, "VariableDeclarator": 1, "ignoredNodes": ["JSXElement *"] }],
         "sort-imports": [1, {
             "ignoreCase": true,
-            "ignoreMemberSort": false,
+            "ignoreMemberSort": true,
             "memberSyntaxSortOrder": [ "multiple", "all", "single", "none"]
         }],
         "no-underscore-dangle": [2, { "allow": ["_grid"] }],
@@ -22,6 +22,11 @@
             },
             "ecmaVersion": 2018,
             "sourceType": "module"
+        }
+    },
+    "settings" : {
+        "import/resolver": {
+            "webpack" : { "config": "webpack.config.js" }
         }
     },
     "env": {

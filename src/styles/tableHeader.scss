@@ -1,0 +1,15 @@
+@import "config";
+
+.tableHeader {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex: 1 1 auto;
+  align-items: center;
+  padding: 10px;
+}
+
+.vendorImage {
+  margin-right: 20px;
+  height: 30px;
+}

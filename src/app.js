@@ -1,7 +1,6 @@
+import Home from 'components/Home';
 import React from 'react';
 import { render } from 'react-dom';
-import ReactComponent from './ReactComponent';
+import 'styles/global.scss';
 
-const title = 'My Minimal React Webpack Babel Setup';
-
-render(<ReactComponent title={title} />, document.getElementById('app'));
+render(<Home />, document.getElementById('app'));
