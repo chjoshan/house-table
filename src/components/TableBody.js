@@ -27,20 +27,18 @@ const TableBody = (props) => {
     const { houses } = props;
     return (
         <div className={styles.tableWrapper}>
-            <div className={styles.tableScroll}>
-                <table>
-                    <thead>
-                        {
-                            generateTableHeader()
-                        }
-                    </thead>
-                    <tbody>
-                        {
-                            houses.map(entry => generateTableRow(entry))
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <table>
+                <thead>
+                    {
+                        generateTableHeader()
+                    }
+                </thead>
+                <tbody>
+                    {
+                        houses.map(entry => generateTableRow(entry))
+                    }
+                </tbody>
+            </table>
         </div>
     );
 };
