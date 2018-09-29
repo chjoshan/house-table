@@ -1,4 +1,5 @@
 import * as customPropTypes from 'customPropTypes';
+import PriceCell from 'components/table/tableCellRenderers/PriceCell';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from 'styles/table/tableBody.scss';
@@ -9,7 +10,7 @@ const generateTableRow = house => (
         <td>{house.id}</td>
         <td><img className={styles.houseImg} src={house.img} alt="house" /></td>
         <td>{house.name}</td>
-        <td>{house.price}</td>
+        <td><PriceCell price={house.price} /></td>
         <td>{house.size}</td>
     </tr>
 );

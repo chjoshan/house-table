@@ -20,3 +20,5 @@ $ npm start
 - comment about selectors
 - icons using fonts
 - update of state down the children component (key vs componentWillReceiveProps)
+- number formatter, length of text on cell etc
+- what happens after price edit? sorting? internal state?

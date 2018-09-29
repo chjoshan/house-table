@@ -12,6 +12,10 @@
             "ignoreMemberSort": true,
             "memberSyntaxSortOrder": [ "multiple", "all", "single", "none"]
         }],
+        "max-len": [2, 150, 2, {
+            "ignoreUrls": true,
+            "ignoreComments": false
+        }],
         "no-underscore-dangle": [2, { "allow": ["_grid"] }],
         "react/jsx-indent": [2, 4],
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
