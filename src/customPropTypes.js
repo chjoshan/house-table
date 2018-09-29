@@ -24,3 +24,6 @@ export const vendors = PropTypes.shape({
     allIds: PropTypes.arrayOf(PropTypes.number).isRequired,
     byId: PropTypes.objectOf(vendor).isRequired
 });
+
+export const sortBy = PropTypes.oneOf(['id', 'name', 'price', 'size']);
+export const sortOrder = PropTypes.oneOf(['asc', 'desc']);

@@ -2,11 +2,11 @@ import * as customPropTypes from 'customPropTypes';
 import React from 'react';
 import { selectHousesByVendor } from 'functions/selectors';
 import styles from 'styles/tableTile.scss';
-import TableBody from 'components/TableBody';
+import TableBodyContainer from 'components/TableBodyContainer';
 import Tile from 'components/Tile';
 import VendorInfo from 'components/VendorInfo';
 
-const TableTile = ({ houses, vendors }) => (
+const TableTile = ({ houses, vendors, sortBy, sortOrder }) => (
     <Tile>
         {
             vendors.allIds.map((vendorId) => {
@@ -20,7 +20,11 @@ const TableTile = ({ houses, vendors }) => (
                           vendorName={vendor.displayName}
                         />
                         <div className={styles.tableBodyWrapper}>
-                            <TableBody houses={housesByVendor} />
+                            <TableBodyContainer
+                              houses={housesByVendor}
+                              sortBy={sortBy}
+                              sortOrder={sortOrder}
+                            />
                         </div>
                     </React.Fragment>
                );
@@ -31,7 +35,9 @@ const TableTile = ({ houses, vendors }) => (
 
 TableTile.propTypes = {
     houses: customPropTypes.houses.isRequired,
-    vendors: customPropTypes.vendors.isRequired
+    vendors: customPropTypes.vendors.isRequired,
+    sortBy: customPropTypes.sortBy.isRequired,
+    sortOrder: customPropTypes.sortOrder.isRequired
 };
 
 export default TableTile;

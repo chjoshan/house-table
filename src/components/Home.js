@@ -10,7 +10,7 @@ class Home extends Component {
             houses: parseHouses(houses.results),
             vendors: parseVendors(houses.results),
             sortBy: 'id',
-            sortOrder: 'ASC'
+            sortOrder: 'asc'
         };
     }
 

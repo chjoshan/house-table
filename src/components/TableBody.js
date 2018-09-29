@@ -13,25 +13,19 @@ const generateTableRow = house => (
     </tr>
 );
 
-const generateTableHeader = () => (
-    <tr>
-        <th>House id</th>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Size</th>
-    </tr>
-);
-
 const TableBody = (props) => {
-    const { houses } = props;
+    const { houses, onSortChange } = props;
     return (
         <div className={styles.tableWrapper}>
             <table>
                 <thead>
-                    {
-                        generateTableHeader()
-                    }
+                    <tr onClick={({ target }) => { onSortChange(target.dataset.value); }}>
+                        <th data-value="id">House id</th>
+                        <th data-value="image">Image</th>
+                        <th data-value="name">Name</th>
+                        <th data-value="price">Price</th>
+                        <th data-value="size">Size</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {
@@ -44,7 +38,8 @@ const TableBody = (props) => {
 };
 
 TableBody.propTypes = {
-    houses: PropTypes.arrayOf(customPropTypes.house).isRequired
+    houses: PropTypes.arrayOf(customPropTypes.house).isRequired,
+    onSortChange: PropTypes.func.isRequired
 };
 
 export default TableBody;

@@ -22,7 +22,8 @@
             },
             "ecmaVersion": 2018,
             "sourceType": "module"
-        }
+        },
+        "object-curly-newline": [0]
     },
     "settings" : {
         "import/resolver": {
