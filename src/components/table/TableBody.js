@@ -21,11 +21,27 @@ const TableBody = (props) => {
             <table>
                 <thead>
                     <tr>
-                        <TableHeaderCell name="House ID" dataValue="id" onClick={onSortChange} sortBy={sortBy} sortOrder={sortOrder} />
+                        <TableHeaderCell
+                          name="House ID"
+                          onClick={() => onSortChange('id')}
+                          icon={sortBy === 'id' ? sortOrder : 'default'}
+                        />
                         <TableHeaderCell name="Image" />
-                        <TableHeaderCell name="Name" dataValue="name" onClick={onSortChange} sortBy={sortBy} sortOrder={sortOrder} />
-                        <TableHeaderCell name="Price" dataValue="price" onClick={onSortChange} sortBy={sortBy} sortOrder={sortOrder} />
-                        <TableHeaderCell name="Size" dataValue="size" onClick={onSortChange} sortBy={sortBy} sortOrder={sortOrder} />
+                        <TableHeaderCell
+                          name="Name"
+                          onClick={() => onSortChange('name')}
+                          icon={sortBy === 'name' ? sortOrder : 'default'}
+                        />
+                        <TableHeaderCell
+                          name="Price"
+                          onClick={() => onSortChange('price')}
+                          icon={sortBy === 'price' ? sortOrder : 'default'}
+                        />
+                        <TableHeaderCell
+                          name="Size"
+                          onClick={() => onSortChange('size')}
+                          icon={sortBy === 'size' ? sortOrder : 'default'}
+                        />
                     </tr>
                 </thead>
                 <tbody>

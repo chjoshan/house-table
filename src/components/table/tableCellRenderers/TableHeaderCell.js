@@ -1,26 +1,25 @@
-import * as customPropTypes from 'customPropTypes';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from 'styles/table/tableCellRenderers/tableHeaderCell.scss';
 
 const TableHeaderCell = (props) => {
-    const { name, dataValue, sortBy, sortOrder, onClick } = props;
-    const active = dataValue === sortBy;
-    let sortIcon = '=';
-    if (active && sortOrder === 'asc') {
-        sortIcon = 'ʌ';
+    const { name, icon, onClick } = props;
+
+    let displayIcon = '=';
+    if (icon === 'asc') {
+        displayIcon = 'ʌ';
     }
-    if (active && sortOrder === 'desc') {
-        sortIcon = 'v';
+    if (icon === 'desc') {
+        displayIcon = 'v';
     }
 
     return (
-        <th onClick={() => onClick(dataValue)}>
+        <th onClick={onClick}>
             <div className={styles.tableHeaderCell}>
                 <span>{name}</span>
                 {
-                    sortBy
-                    && <span className={styles.sortIcon}>{sortIcon}</span>
+                    icon
+                    && <span className={styles.sortIcon}>{displayIcon}</span>
                 }
             </div>
         </th>
@@ -29,17 +28,13 @@ const TableHeaderCell = (props) => {
 
 TableHeaderCell.propTypes = {
     name: PropTypes.string.isRequired,
-    dataValue: PropTypes.string,
-    sortBy: customPropTypes.sortBy,
-    sortOrder: customPropTypes.sortOrder,
+    icon: PropTypes.string,
     onClick: PropTypes.func
 };
 
 TableHeaderCell.defaultProps = {
-    sortBy: 'id',
-    sortOrder: 'asc',
-    dataValue: '',
-    onClick: () => {}
+    onClick: () => {},
+    icon: ''
 };
 
 export default TableHeaderCell;

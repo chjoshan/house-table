@@ -19,4 +19,4 @@ $ npm start
 - comment about the usage Fragments and Context
 - comment about selectors
 - icons using fonts
-- better table cell header
+- update of state down the children component (key vs componentWillReceiveProps)
