@@ -19,7 +19,7 @@ class TableBodyContainer extends Component {
         const { houses, sortBy, sortOrder } = this.state;
         let newSortOrder = sortOrder;
         if (sortBy === newSortBy) {
-            newSortOrder = this.toggleSortOrder();
+            newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
         }
         const sortedHouses = selectHouses(houses, newSortBy, newSortOrder);
         this.setState(state => Object.assign({}, state, {
@@ -29,15 +29,15 @@ class TableBodyContainer extends Component {
         }));
     }
 
-    toggleSortOrder() {
-        const { sortOrder } = this.state;
-        return sortOrder === 'asc' ? 'desc' : 'asc';
-    }
-
     render() {
-        const { houses } = this.state;
+        const { houses, sortBy, sortOrder } = this.state;
         return (
-            <TableBody houses={houses} onSortChange={this.handleSortChange} />
+            <TableBody
+              houses={houses}
+              onSortChange={this.handleSortChange}
+              sortBy={sortBy}
+              sortOrder={sortOrder}
+            />
         );
     }
 }

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import styles from 'styles/tableHeader.scss';
+import styles from 'styles/table/vendorInfo.scss';
 
 const VendorInfo = ({ vendorLogo, vendorName }) => (
     <div className={styles.tableHeader}>

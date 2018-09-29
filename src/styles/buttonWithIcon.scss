@@ -1,0 +1,16 @@
+ @import "config";
+
+.buttonWithIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100px;
+  height: 30px;
+  padding: 0 10px;
+  background: $whiteSmoke;
+}
+
+.icon {
+  margin-top: 2px;
+  font-size: 12px;
+}

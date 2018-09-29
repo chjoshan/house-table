@@ -1,10 +1,8 @@
 # House Listings
 
 ### To start the app:
-$ npm install
-
-$ npm run build
-
+$ npm install  
+$ npm run build  
 $ npm start
 
 ### Requirements
@@ -20,3 +18,5 @@ $ npm start
 - comment about the usage of style
 - comment about the usage Fragments and Context
 - comment about selectors
+- icons using fonts
+- better table cell header

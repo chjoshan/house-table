@@ -1,0 +1,12 @@
+@import "../../config";
+
+.tableHeaderCell {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sortIcon {
+  margin-top: 2px;
+  font-size: 10px;
+}

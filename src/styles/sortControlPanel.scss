@@ -1,0 +1,12 @@
+@import "config";
+
+.sortControlPanel {
+  display: flex;
+  justify-content: flex-end;
+  margin: 20px 0 10px 0;
+  align-items: center;
+
+  > span, > button {
+    margin-left: 10px;
+  }
+}
