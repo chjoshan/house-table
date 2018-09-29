@@ -22,3 +22,4 @@ $ npm start
 - update of state down the children component (key vs componentWillReceiveProps)
 - number formatter, length of text on cell etc
 - what happens after price edit? sorting? internal state?
+- move class functions/static functions

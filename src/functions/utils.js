@@ -45,3 +45,12 @@ export const parseVendors = (serverResponse) => {
 
     return result;
 };
+
+export const formatNumber = (number, locale = 'de-DE', currency = null) => {
+    const config = {};
+    if (currency) {
+        config.style = 'currency';
+        config.currency = currency;
+    }
+    return new Intl.NumberFormat(locale, config).format(number);
+};

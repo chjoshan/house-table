@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import { formatNumber } from 'functions/utils';
 import PropTypes from 'prop-types';
 import styles from 'styles/table/tableCellRenderers/priceCell.scss';
-
-const formatPrice = (price, format) => new Intl.NumberFormat(format, { style: 'currency', currency: 'EUR' }).format(price);
 
 class PriceCell extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            formattedPrice: formatPrice(props.price, props.format),
+            formattedPrice: formatNumber(props.price, props.locale, props.currency),
             price: props.price,
             editable: false
         };
@@ -30,7 +29,7 @@ class PriceCell extends Component {
         event.preventDefault();
         const newPrice = event.target.value;
         this.setState((state, props) => Object.assign({}, state, {
-            formattedPrice: formatPrice(newPrice, props.format),
+            formattedPrice: formatNumber(newPrice, props.locale, props.currency),
             price: newPrice
         }));
     }
@@ -78,11 +77,13 @@ class PriceCell extends Component {
 
 PriceCell.propTypes = {
     price: PropTypes.number.isRequired,
-    format: PropTypes.string
+    locale: PropTypes.string,
+    currency: PropTypes.string
 };
 
 PriceCell.defaultProps = {
-    format: 'de-DE'
+    locale: 'de-DE',
+    currency: 'EUR'
 };
 
 export default PriceCell;
