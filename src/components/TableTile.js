@@ -2,9 +2,9 @@ import * as customPropTypes from 'customPropTypes';
 import React from 'react';
 import { selectHousesByVendor } from 'functions/selectors';
 import styles from 'styles/tableTile.scss';
-import TableBodyContainer from 'components/TableBodyContainer';
+import TableBodyContainer from 'components/table/TableBodyContainer';
 import Tile from 'components/Tile';
-import VendorInfo from 'components/VendorInfo';
+import VendorInfo from 'components/table/VendorInfo';
 
 const TableTile = ({ houses, vendors, sortBy, sortOrder }) => (
     <Tile>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as customPropTypes from 'customPropTypes';
 import PropTypes from 'prop-types';
 import { selectHouses } from 'functions/selectors';
-import TableBody from 'components/TableBody';
+import TableBody from 'components/table/TableBody';
 
 class TableBodyContainer extends Component {
     constructor(props) {
