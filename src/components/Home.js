@@ -3,12 +3,9 @@ import React, { Component } from 'react';
 import Body from 'components/Body';
 import ErrorComponent from 'components/ErrorComponent';
 import { fetchData } from 'functions/async';
-import housesStatic from 'houses.json';
 import LoadingComponent from 'components/LoadingComponent';
 import SortControlPanel from 'components/SortControlPanel';
 import TableTile from 'components/TableTile';
-
-console.log(housesStatic);
 
 const HOUSES_ENDPOINT = 'http://localhost:1337/houses';
 
@@ -16,16 +13,10 @@ class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            houses: parseHouses(housesStatic.results),
-            vendors: parseVendors(housesStatic.results),
+            houses: {},
+            vendors: {},
             sortBy: 'id',
             sortOrder: 'asc',
-            data: {
-                houses: [],
-                vendors: [],
-                sortBy: 'id',
-                sortOrder: 'asc'
-            },
             loading: true,
             error: false
         };
@@ -38,16 +29,13 @@ class Home extends Component {
                 if (response) {
                     const houses = parseHouses(response.results);
                     const vendors = parseVendors(response.results);
-                    const data = {
+                    this.setState(state => Object.assign({}, state, {
+                        loading: false,
+                        error: false,
                         houses,
                         vendors,
                         sortBy: 'id',
                         sortOrder: 'asc'
-                    };
-                    this.setState(state => Object.assign({}, state, {
-                        loading: false,
-                        error: false,
-                        data
                     }));
                 } else if (applicationOrServerError) {
                     this.setState(state => Object.assign({}, state, {
@@ -78,9 +66,7 @@ class Home extends Component {
     }
 
     render() {
-        const { loading, error, data } = this.state;
-        const { houses, vendors, sortBy, sortOrder } = data;
-        console.log(this.state);
+        const { loading, error, sortBy, sortOrder } = this.state;
 
         return (
             <Body>
