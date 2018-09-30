@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { formatNumber } from 'functions/parsers';
+import GlobalContext from 'context/GlobalContext';
 import PropTypes from 'prop-types';
 import styles from 'styles/table/tableCellRenderers/priceCell.scss';
 
@@ -22,6 +23,9 @@ class PriceCell extends Component {
     }
 
     disableEdit() {
+        const { onPriceUpdate, houseId } = this.props;
+        const { price } = this.state;
+        onPriceUpdate({ id: houseId, price });
         this.setState(state => Object.assign({}, state, { editable: false }));
     }
 
@@ -78,7 +82,9 @@ class PriceCell extends Component {
 PriceCell.propTypes = {
     price: PropTypes.number.isRequired,
     locale: PropTypes.string,
-    currency: PropTypes.string
+    currency: PropTypes.string,
+    houseId: PropTypes.number.isRequired,
+    onPriceUpdate: PropTypes.func.isRequired
 };
 
 PriceCell.defaultProps = {
@@ -86,4 +92,13 @@ PriceCell.defaultProps = {
     currency: 'EUR'
 };
 
-export default PriceCell;
+export default props => (
+    <GlobalContext.Consumer>
+        {state => (
+            <PriceCell
+              {...props}
+              onPriceUpdate={state.onPriceUpdate}
+            />
+        )}
+    </GlobalContext.Consumer>
+);

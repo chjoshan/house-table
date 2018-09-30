@@ -4,7 +4,7 @@ import {
     selectVendorById
 } from 'functions/selectors';
 import * as customPropTypes from 'customPropTypes';
-import GlobalContext from 'components/GlobalContext';
+import GlobalContext from 'context/GlobalContext';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from 'styles/vendorTable.scss';

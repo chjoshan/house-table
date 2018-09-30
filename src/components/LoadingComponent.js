@@ -4,6 +4,7 @@ import styles from 'styles/loadingComponent.scss';
 
 const LoadingComponent = () => (
     <div className={styles.wrapper}>
+        <h2>Loading...</h2>
         <div className={styles.sortControlPanel}>
             <span className={styles.button} />
             <span className={styles.button} />

@@ -1,9 +1,10 @@
 import { parseHouses, parseVendors } from 'functions/parsers';
 import React, { Component } from 'react';
+import _filter from 'lodash/filter';
 import Body from 'components/Body';
 import ErrorComponent from 'components/ErrorComponent';
 import { fetchData } from 'functions/async';
-import GlobalContext from 'components/GlobalContext';
+import GlobalContext from 'context/GlobalContext';
 import LoadingComponent from 'components/LoadingComponent';
 import SortControlPanel from 'components/SortControlPanel';
 import VendorTable from 'components/VendorTable';
@@ -18,10 +19,12 @@ class Root extends Component {
             vendors: {},
             sortBy: 'id',
             sortOrder: 'asc',
+            update: [],
             loading: true,
             error: false
         };
         this.handleGlobalSortChange = this.handleGlobalSortChange.bind(this);
+        this.handlePriceUpdate = this.handlePriceUpdate.bind(this);
     }
 
     componentDidMount() {
@@ -66,6 +69,12 @@ class Root extends Component {
         }));
     }
 
+    handlePriceUpdate(updatedData) {
+        const { update } = this.state;
+        const filteredUpdates = _filter(update, val => val.id !== updatedData.id);
+        this.setState(state => Object.assign({}, state, { update: [...filteredUpdates, updatedData] }));
+    }
+
     render() {
         const { loading, error, sortBy, sortOrder, vendors, houses } = this.state;
 
@@ -89,7 +98,7 @@ class Root extends Component {
                               vendors,
                               sortBy,
                               sortOrder,
-                              onPriceChange: () => {}
+                              onPriceUpdate: this.handlePriceUpdate
                           }}
                         >
                             <SortControlPanel

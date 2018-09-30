@@ -57,7 +57,7 @@ const TableBody = (props) => {
                                 <td>{house.id}</td>
                                 <td><img className={styles.houseImg} src={house.img} alt="house" /></td>
                                 <td>{house.name}</td>
-                                <td><PriceCell price={house.price} /></td>
+                                <td><PriceCell price={house.price} houseId={house.id} /></td>
                                 <td><NumberCell number={house.size} suffix="sqm" /></td>
                             </tr>
                         ))
