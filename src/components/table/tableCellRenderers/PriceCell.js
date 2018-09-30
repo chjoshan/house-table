@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { formatNumber } from 'functions/utils';
+import { formatNumber } from 'functions/parsers';
 import PropTypes from 'prop-types';
 import styles from 'styles/table/tableCellRenderers/priceCell.scss';
 

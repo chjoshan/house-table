@@ -6,6 +6,29 @@ import React from 'react';
 import styles from 'styles/table/tableBody.scss';
 import TableHeaderCell from 'components/table/tableCellRenderers/TableHeaderCell';
 
+const TABLE_HEADER = [
+    {
+        name: 'House ID',
+        value: 'id'
+    },
+    {
+        name: 'Image',
+        value: 'image'
+    },
+    {
+        name: 'Name',
+        value: 'name'
+    },
+    {
+        name: 'Price',
+        value: 'price'
+    },
+    {
+        name: 'Size',
+        value: 'size'
+    }
+];
+
 const TableBody = (props) => {
     const { houses, onSortChange, sortBy, sortOrder } = props;
     return (
@@ -13,27 +36,18 @@ const TableBody = (props) => {
             <table>
                 <thead>
                     <tr>
-                        <TableHeaderCell
-                          name="House ID"
-                          onClick={() => onSortChange('id')}
-                          icon={sortBy === 'id' ? sortOrder : 'default'}
-                        />
-                        <TableHeaderCell name="Image" />
-                        <TableHeaderCell
-                          name="Name"
-                          onClick={() => onSortChange('name')}
-                          icon={sortBy === 'name' ? sortOrder : 'default'}
-                        />
-                        <TableHeaderCell
-                          name="Price"
-                          onClick={() => onSortChange('price')}
-                          icon={sortBy === 'price' ? sortOrder : 'default'}
-                        />
-                        <TableHeaderCell
-                          name="Size"
-                          onClick={() => onSortChange('size')}
-                          icon={sortBy === 'size' ? sortOrder : 'default'}
-                        />
+                        {
+                            TABLE_HEADER.map(header => (
+                                <TableHeaderCell
+                                  key={`tableHeaderCell-${header.value}`}
+                                  name={header.name}
+                                  value={header.value}
+                                  onClick={() => onSortChange(header.value)}
+                                  sortBy={sortBy}
+                                  sortOrder={sortOrder}
+                                />
+                            ))
+                        }
                     </tr>
                 </thead>
                 <tbody>

@@ -1,4 +1,4 @@
-import { formatNumber } from 'functions/utils';
+import { formatNumber } from 'functions/parsers';
 import PropTypes from 'prop-types';
 import React from 'react';
 

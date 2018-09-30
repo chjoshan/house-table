@@ -1,15 +1,16 @@
-import { parseHouses, parseVendors } from 'functions/utils';
+import { parseHouses, parseVendors } from 'functions/parsers';
 import React, { Component } from 'react';
 import Body from 'components/Body';
 import ErrorComponent from 'components/ErrorComponent';
 import { fetchData } from 'functions/async';
+import GlobalContext from 'components/GlobalContext';
 import LoadingComponent from 'components/LoadingComponent';
 import SortControlPanel from 'components/SortControlPanel';
-import TableTile from 'components/TableTile';
+import VendorTable from 'components/VendorTable';
 
 const HOUSES_ENDPOINT = 'http://localhost:1337/houses';
 
-class Home extends Component {
+class Root extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -66,7 +67,7 @@ class Home extends Component {
     }
 
     render() {
-        const { loading, error, sortBy, sortOrder } = this.state;
+        const { loading, error, sortBy, sortOrder, vendors, houses } = this.state;
 
         return (
             <Body>
@@ -82,14 +83,24 @@ class Home extends Component {
                 {
                     !loading && !error
                     && (
-                        <React.Fragment>
+                        <GlobalContext.Provider
+                          value={{
+                              houses,
+                              vendors,
+                              sortBy,
+                              sortOrder,
+                              onPriceChange: () => {}
+                          }}
+                        >
                             <SortControlPanel
                               sortBy={sortBy}
                               sortOrder={sortOrder}
                               onGlobalSortChange={this.handleGlobalSortChange}
                             />
-                            <TableTile {...this.state} key={`table-${sortOrder}-${sortBy}`} />
-                        </React.Fragment>
+                            {
+                                vendors.allIds.map(vendorId => <VendorTable key={`vendor-${vendorId}`} vendorId={vendorId} />)
+                            }
+                        </GlobalContext.Provider>
                     )
                 }
             </Body>
@@ -97,4 +108,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default Root;
