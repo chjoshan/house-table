@@ -1,0 +1,45 @@
+@import "config";
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+
+  .sortControlPanel {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 20px;
+
+    .button {
+      flex: 0 1 100px;
+      height: 30px;
+      margin-left: 10px;
+      background: $whiteSmoke;
+    }
+  }
+
+  .table {
+    flex: 1 1 auto;
+    display: flex;
+    margin-bottom: 20px;
+
+    .cells {
+      flex: 1 1 auto;
+      margin-left: 10px;
+      height: 30px;
+    }
+  }
+}
+
+.lightGrey {
+  background: $lightGrey;
+}
+
+.whiteSmoke {
+  background: $whiteSmoke;
+}
+
+.lightLightGrey {
+  background: $lightLightGrey;
+}

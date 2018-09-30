@@ -7,8 +7,8 @@ $ npm start
 
 ### Requirements
 [x] display table data of houses by vendors  
-[ ] sorting of data  
-[ ] editable price field  
+[x] sorting of data  
+[x] editable price field  
 [ ] save values 
 
 #### to do:

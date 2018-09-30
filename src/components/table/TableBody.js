@@ -6,16 +6,6 @@ import React from 'react';
 import styles from 'styles/table/tableBody.scss';
 import TableHeaderCell from 'components/table/tableCellRenderers/TableHeaderCell';
 
-const generateTableRow = house => (
-    <tr key={`house-${house.id}`}>
-        <td>{house.id}</td>
-        <td><img className={styles.houseImg} src={house.img} alt="house" /></td>
-        <td>{house.name}</td>
-        <td><PriceCell price={house.price} /></td>
-        <td><NumberCell number={house.size} suffix="sqm" /></td>
-    </tr>
-);
-
 const TableBody = (props) => {
     const { houses, onSortChange, sortBy, sortOrder } = props;
     return (
@@ -48,7 +38,15 @@ const TableBody = (props) => {
                 </thead>
                 <tbody>
                     {
-                        houses.map(entry => generateTableRow(entry))
+                        houses.map(house => (
+                            <tr key={`house-${house.id}`}>
+                                <td>{house.id}</td>
+                                <td><img className={styles.houseImg} src={house.img} alt="house" /></td>
+                                <td>{house.name}</td>
+                                <td><PriceCell price={house.price} /></td>
+                                <td><NumberCell number={house.size} suffix="sqm" /></td>
+                            </tr>
+                        ))
                     }
                 </tbody>
             </table>
