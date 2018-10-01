@@ -10,7 +10,7 @@ $ npm start
 
 ### Requirements
 [x] display table data of houses by vendors  
-[x] sorting of data locally and globally
+[x] sorting of data locally and globally  
 [x] editable price field  
 [x] save values 
 
