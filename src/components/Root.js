@@ -11,9 +11,12 @@ import SortControlPanel from 'components/SortControlPanel';
 import styles from 'styles/root.scss';
 import VendorTable from 'components/VendorTable';
 
+// please run the node server which provides the data
 const HOUSES_ENDPOINT = 'http://localhost:1337/houses';
 
 class Root extends Component {
+    // normalise state by separating houses and vendors entity
+    // a house is referenced to its vendor by vendor id
     constructor(props) {
         super(props);
         this.state = {
@@ -29,6 +32,7 @@ class Root extends Component {
         this.handlePriceUpdate = this.handlePriceUpdate.bind(this);
     }
 
+    // load the component then trigger data load and then update the state of the app upon data arrival
     componentDidMount() {
         fetchData(HOUSES_ENDPOINT)
             .then(({ response, applicationOrServerError }) => {
@@ -51,8 +55,7 @@ class Root extends Component {
                         ...state,
                         ...{
                             loading: false,
-                            error: applicationOrServerError,
-                            data: null
+                            error: applicationOrServerError
                         }
                     }));
                 } else {
@@ -60,14 +63,18 @@ class Root extends Component {
                         ...state,
                         ...{
                             loading: false,
-                            error: false,
-                            data: null
+                            error: {
+                                type: 'Unknown Error',
+                                message: 'Unknown Error. Please try again in a moment',
+                                error: {}
+                            }
                         }
                     }));
                 }
             });
     }
 
+    // handle global sort change as changed by the sorting control panel
     handleGlobalSortChange(newSortBy) {
         const { sortBy, sortOrder } = this.state;
         let newSortOrder = sortOrder;
@@ -83,6 +90,7 @@ class Root extends Component {
         }));
     }
 
+    // handle price update when price are changed from the table
     handlePriceUpdate(updatedData) {
         const { update } = this.state;
         const filteredUpdates = _filter(update, ({ id }) => id !== updatedData.id);
@@ -93,6 +101,7 @@ class Root extends Component {
         }));
     }
 
+    // the state of the app is provided via <GlobalContext.Provider>
     render() {
         const { loading, error, sortBy, sortOrder, vendors, houses, update } = this.state;
 

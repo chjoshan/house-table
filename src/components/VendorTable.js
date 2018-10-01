@@ -12,6 +12,7 @@ import TableBody from 'components/table/TableBody';
 import VendorInfo from 'components/table/VendorInfo';
 
 class VendorTable extends React.Component {
+    // the table keeps an internal state of the data to enable sorting from within the local context
     constructor(props) {
         super(props);
         this.state = {
@@ -23,6 +24,7 @@ class VendorTable extends React.Component {
         this.handleSortChange = this.handleSortChange.bind(this);
     }
 
+    // if the state changes from the global state the component rerenders using newly computed data
     componentWillReceiveProps(nextProps) {
         const { houses, sortBy, sortOrder } = this.props;
         const newSortBy = nextProps.sortBy;
@@ -40,6 +42,7 @@ class VendorTable extends React.Component {
         }
     }
 
+    // handles internal sorting
     handleSortChange(newSortBy) {
         const { houses, sortBy, sortOrder } = this.state;
         let newSortOrder = sortOrder;
@@ -83,6 +86,10 @@ VendorTable.propTypes = {
     houses: PropTypes.arrayOf(customPropTypes.house).isRequired
 };
 
+/*
+only the required are extracted from global context using selector functions (src/functions/selectors)
+Used context here to avoid 'props drilling'
+*/
 export default props => (
     <GlobalContext.Consumer>
         {state => (

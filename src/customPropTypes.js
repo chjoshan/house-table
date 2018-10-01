@@ -9,20 +9,10 @@ export const house = PropTypes.shape({
     vendorId: PropTypes.number.isRequired
 });
 
-export const houses = PropTypes.shape({
-    allIds: PropTypes.arrayOf(PropTypes.number).isRequired,
-    byId: PropTypes.objectOf(house).isRequired
-});
-
 export const vendor = PropTypes.shape({
     id: PropTypes.number.isRequired,
     displayName: PropTypes.string.isRequired,
     logo: PropTypes.string.isRequired
-});
-
-export const vendors = PropTypes.shape({
-    allIds: PropTypes.arrayOf(PropTypes.number).isRequired,
-    byId: PropTypes.objectOf(vendor).isRequired
 });
 
 export const sortBy = PropTypes.oneOf(['id', 'name', 'price', 'size']);

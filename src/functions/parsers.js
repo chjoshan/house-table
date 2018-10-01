@@ -1,4 +1,8 @@
+// this file contains parser utility functions like parser for house object, parser for vendor object, number formatter, etc.
+
+// extract houses object from server response
 export const parseHouses = (serverResponse) => {
+    // houses object in the global object will have this shape
     const result = {
         allIds: [],
         byId: {}
@@ -23,7 +27,9 @@ export const parseHouses = (serverResponse) => {
     return result;
 };
 
+// extract vendor object from server response
 export const parseVendors = (serverResponse) => {
+    // vendors object in the global object will have this shape
     const result = {
         allIds: [],
         byId: {}
@@ -46,6 +52,7 @@ export const parseVendors = (serverResponse) => {
     return result;
 };
 
+// format number by locale, currency, etc.
 export const formatNumber = (number, locale = 'de-DE', currency = null) => {
     const config = {};
     if (currency) {

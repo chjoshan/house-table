@@ -29,41 +29,56 @@ const TABLE_HEADER = [
     }
 ];
 
+/*
+This is the presentational Table component
+Table cell renderers can be found under /table/tableCellRenderers
+Ideally every type of data should have a dedicated cell renderer which handles all the edge cases of that type
+*/
+
 const TableBody = (props) => {
     const { houses, onSortChange, sortBy, sortOrder } = props;
     return (
         <div className={styles.tableWrapper}>
-            <table>
-                <thead>
-                    <tr>
+            {
+                houses.length < 1
+                && <div className={styles.empty}>There are no houses from this vendor</div>
+            }
+            {
+                houses.length >= 1
+                && (
+                    <table>
+                        <thead>
+                        <tr>
+                            {
+                                TABLE_HEADER.map(header => (
+                                    <TableHeaderCell
+                                      key={`tableHeaderCell-${header.value}`}
+                                      name={header.name}
+                                      value={header.value}
+                                      onClick={() => onSortChange(header.value)}
+                                      sortBy={sortBy}
+                                      sortOrder={sortOrder}
+                                    />
+                                ))
+                            }
+                        </tr>
+                        </thead>
+                        <tbody>
                         {
-                            TABLE_HEADER.map(header => (
-                                <TableHeaderCell
-                                  key={`tableHeaderCell-${header.value}`}
-                                  name={header.name}
-                                  value={header.value}
-                                  onClick={() => onSortChange(header.value)}
-                                  sortBy={sortBy}
-                                  sortOrder={sortOrder}
-                                />
+                            houses.map(house => (
+                                <tr key={`house-${house.id}`}>
+                                    <td>{house.id}</td>
+                                    <td><img className={styles.houseImg} src={house.img} alt="house" /></td>
+                                    <td>{house.name}</td>
+                                    <td><PriceCell price={house.price} houseId={house.id} /></td>
+                                    <td><NumberCell number={house.size} suffix="sqm" /></td>
+                                </tr>
                             ))
                         }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        houses.map(house => (
-                            <tr key={`house-${house.id}`}>
-                                <td>{house.id}</td>
-                                <td><img className={styles.houseImg} src={house.img} alt="house" /></td>
-                                <td>{house.name}</td>
-                                <td><PriceCell price={house.price} houseId={house.id} /></td>
-                                <td><NumberCell number={house.size} suffix="sqm" /></td>
-                            </tr>
-                        ))
-                    }
-                </tbody>
-            </table>
+                        </tbody>
+                    </table>
+                )
+            }
         </div>
     );
 };

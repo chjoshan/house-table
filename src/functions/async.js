@@ -1,5 +1,10 @@
 import { fetch } from 'whatwg-fetch';
 
+/*
+fetch data using async, await and fetch
+In a way, async await takes away the asynchronicity of async operations
+*/
+
 export const fetchData = async (endpoint) => {
     try {
         const response = await fetch(endpoint);

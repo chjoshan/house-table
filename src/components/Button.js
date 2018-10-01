@@ -6,6 +6,7 @@ import styles from 'styles/button.scss';
 const Button = (props) => {
     const { label, icon, color, onClick } = props;
 
+    // use icon pack or something...
     let displayIcon;
     if (icon === 'sort') {
         displayIcon = '=';

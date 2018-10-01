@@ -1,4 +1,4 @@
-@import "../config";
+@import "../colors";
 
 .tableWrapper {
   text-align: left;
@@ -36,4 +36,8 @@
 
 .houseImg {
   height: 50px;
+}
+
+.empty {
+  padding: 40px;
 }

@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import styles from 'styles/sortControlPanel.scss';
 
+/*
+I would assume this to be a server side sort operation in a real app situation.
+Because imagining the scenario where pagination/limit is set.
+Then we would be sorting only on the first [limit] numbers of data
+*/
 const SortControlPanel = (props) => {
     const { onGlobalSortChange, sortBy, sortOrder } = props;
 
