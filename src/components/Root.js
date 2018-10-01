@@ -2,11 +2,13 @@ import { parseHouses, parseVendors } from 'functions/parsers';
 import React, { Component } from 'react';
 import _filter from 'lodash/filter';
 import Body from 'components/Body';
+import Button from 'components/Button';
 import ErrorComponent from 'components/ErrorComponent';
 import { fetchData } from 'functions/async';
 import GlobalContext from 'context/GlobalContext';
 import LoadingComponent from 'components/LoadingComponent';
 import SortControlPanel from 'components/SortControlPanel';
+import styles from 'styles/root.scss';
 import VendorTable from 'components/VendorTable';
 
 const HOUSES_ENDPOINT = 'http://localhost:1337/houses';
@@ -33,25 +35,34 @@ class Root extends Component {
                 if (response) {
                     const houses = parseHouses(response.results);
                     const vendors = parseVendors(response.results);
-                    this.setState(state => Object.assign({}, state, {
-                        loading: false,
-                        error: false,
-                        houses,
-                        vendors,
-                        sortBy: 'id',
-                        sortOrder: 'asc'
+                    this.setState(state => ({
+                        ...state,
+                        ...{
+                            loading: false,
+                            error: false,
+                            houses,
+                            vendors,
+                            sortBy: 'id',
+                            sortOrder: 'asc'
+                        }
                     }));
                 } else if (applicationOrServerError) {
-                    this.setState(state => Object.assign({}, state, {
-                        loading: false,
-                        error: applicationOrServerError,
-                        data: null
+                    this.setState(state => ({
+                        ...state,
+                        ...{
+                            loading: false,
+                            error: applicationOrServerError,
+                            data: null
+                        }
                     }));
                 } else {
-                    this.setState(state => Object.assign({}, state, {
-                        loading: false,
-                        error: false,
-                        data: null
+                    this.setState(state => ({
+                        ...state,
+                        ...{
+                            loading: false,
+                            error: false,
+                            data: null
+                        }
                     }));
                 }
             });
@@ -63,20 +74,27 @@ class Root extends Component {
         if (sortBy === newSortBy) {
             newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
         }
-        this.setState(state => Object.assign({}, state, {
-            sortBy: newSortBy,
-            sortOrder: newSortOrder
+        this.setState(state => ({
+            ...state,
+            ...{
+                sortBy: newSortBy,
+                sortOrder: newSortOrder
+            }
         }));
     }
 
     handlePriceUpdate(updatedData) {
         const { update } = this.state;
-        const filteredUpdates = _filter(update, val => val.id !== updatedData.id);
-        this.setState(state => Object.assign({}, state, { update: [...filteredUpdates, updatedData] }));
+        const filteredUpdates = _filter(update, ({ id }) => id !== updatedData.id);
+        this.setState(state => ({
+            ...state,
+            ...{ update: [...filteredUpdates, updatedData]
+            }
+        }));
     }
 
     render() {
-        const { loading, error, sortBy, sortOrder, vendors, houses } = this.state;
+        const { loading, error, sortBy, sortOrder, vendors, houses, update } = this.state;
 
         return (
             <Body>
@@ -109,6 +127,9 @@ class Root extends Component {
                             {
                                 vendors.allIds.map(vendorId => <VendorTable key={`vendor-${vendorId}`} vendorId={vendorId} />)
                             }
+                            <div className={styles.footer}>
+                                <Button label="Save" color="blue" onClick={() => { console.log(JSON.stringify({ update })); }} />
+                            </div>
                         </GlobalContext.Provider>
                     )
                 }

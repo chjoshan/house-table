@@ -19,22 +19,25 @@ class PriceCell extends Component {
     }
 
     enableEdit() {
-        this.setState(state => Object.assign({}, state, { editable: true }));
+        this.setState(state => ({ ...state, ...{ editable: true } }));
     }
 
     disableEdit() {
         const { onPriceUpdate, houseId } = this.props;
         const { price } = this.state;
         onPriceUpdate({ id: houseId, price });
-        this.setState(state => Object.assign({}, state, { editable: false }));
+        this.setState(state => ({ ...state, ...{ editable: false } }));
     }
 
     updatePrice(event) {
         event.preventDefault();
-        const newPrice = event.target.value;
-        this.setState((state, props) => Object.assign({}, state, {
-            formattedPrice: formatNumber(newPrice, props.locale, props.currency),
-            price: newPrice
+        const newPrice = +event.target.value; // parse to 'Number' type
+        this.setState((state, props) => ({
+            ...state,
+            ...{
+                formattedPrice: formatNumber(newPrice, props.locale, props.currency),
+                price: newPrice
+            }
         }));
     }
 

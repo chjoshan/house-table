@@ -29,10 +29,13 @@ class VendorTable extends React.Component {
         const newSortOrder = nextProps.sortOrder;
         if (sortBy !== newSortBy || sortOrder !== newSortOrder) {
             const sortedHouses = selectHousesWithSorting(houses, newSortBy, newSortOrder);
-            this.setState(state => Object.assign({}, state, {
-                sortBy: newSortBy,
-                sortOrder: newSortOrder,
-                houses: sortedHouses
+            this.setState(state => ({
+                ...state,
+                ...{
+                    sortBy: newSortBy,
+                    sortOrder: newSortOrder,
+                    houses: sortedHouses
+                }
             }));
         }
     }
@@ -44,10 +47,13 @@ class VendorTable extends React.Component {
             newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
         }
         const sortedHouses = selectHousesWithSorting(houses, newSortBy, newSortOrder);
-        this.setState(state => Object.assign({}, state, {
-            houses: sortedHouses,
-            sortBy: newSortBy,
-            sortOrder: newSortOrder
+        this.setState(state => ({
+            ...state,
+            ...{
+                houses: sortedHouses,
+                sortBy: newSortBy,
+                sortOrder: newSortOrder
+            }
         }));
     }
 
@@ -81,11 +87,11 @@ export default props => (
     <GlobalContext.Consumer>
         {state => (
             <VendorTable
+              {...props}
               houses={selectHousesByVendor(props.vendorId, state.houses.byId)}
               vendor={selectVendorById(props.vendorId, state.vendors.byId)}
               sortBy={state.sortBy}
               sortOrder={state.sortOrder}
-              {...props}
             />
         )}
     </GlobalContext.Consumer>

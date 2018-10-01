@@ -1,5 +1,5 @@
 import * as customPropTypes from 'customPropTypes';
-import ButtonWithIcon from 'components/ButtonWithIcon';
+import Button from 'components/Button';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from 'styles/sortControlPanel.scss';
@@ -10,19 +10,19 @@ const SortControlPanel = (props) => {
     return (
         <div className={styles.sortControlPanel}>
             <span>sort all by</span>
-            <ButtonWithIcon
+            <Button
               label="Name"
-              icon={sortBy === 'name' ? sortOrder : 'default'}
+              icon={sortBy === 'name' ? sortOrder : 'sort'}
               onClick={() => { onGlobalSortChange('name'); }}
             />
-            <ButtonWithIcon
+            <Button
               label="Price"
-              icon={sortBy === 'price' ? sortOrder : 'default'}
+              icon={sortBy === 'price' ? sortOrder : 'sort'}
               onClick={() => { onGlobalSortChange('price'); }}
             />
-            <ButtonWithIcon
+            <Button
               label="Size"
-              icon={sortBy === 'size' ? sortOrder : 'default'}
+              icon={sortBy === 'size' ? sortOrder : 'sort'}
               onClick={() => { onGlobalSortChange('size'); }}
             />
         </div>

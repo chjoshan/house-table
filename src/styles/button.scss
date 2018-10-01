@@ -1,13 +1,21 @@
  @import "config";
 
-.buttonWithIcon {
+.button {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100px;
   height: 30px;
   padding: 0 10px;
+}
+
+.button-grey {
   background: $whiteSmoke;
+}
+
+.button-blue {
+  background: $blue;
+  color: $white
 }
 
 .icon {
